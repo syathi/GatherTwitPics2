@@ -1,0 +1,15 @@
+{
+  "name": "gathertwitpics",
+  "version": "1.0.0",
+  "description": "ついった画像あつめ",
+  "main": "getPics2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yarihe",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^1.7.3",
+    "twit": "^2.2.5"
+  }
+}

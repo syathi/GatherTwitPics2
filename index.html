@@ -1,0 +1,53 @@
+
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>TwiPicGather</title>
+
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/socket.io/socket.io.js" ></script>
+	<!-- react.jsとかのインクルード 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <style>
+    	body{
+    		background-color: antiquewhite;
+    	}
+    	li{
+			float:left;
+			vertical-align: bottom;
+		}
+    </style>
+	<script>
+		$(function(){
+			var socket = io.connect();//サーバと接続
+			$('#word').submit(function(){////////////////////////////////////////////////検索フォームから検索出来るようにしたい
+				socket.emit('search', $("#text")[0].value, function(data){
+					console.log(data + "を送信!");
+				});
+				console.log($("#text")[0].value);
+				return false;
+			});
+			$('#none').submit(function(){//
+				socket.emit('msg', $('#none').val());//inputタグの内容をmsgイベントとしてサーバへ
+				$('#none').val('');//inputタグを空にしておく
+				return false;
+			});
+			socket.on('msg', function(data){//msgイベントが発火したら実行
+				$('div').prepend(data);
+			});
+		});
+		$
+	</script>
+</head>
+
+<body>
+	<h1>ついった画像あつめ</h1>
+	<form id="word"><input id="text"></form>
+	<form id="none" style="display:none;" ><input></form><div id="picArea"><ul></ul></div>
+</body>
+</html>
