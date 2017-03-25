@@ -2,18 +2,12 @@
     つくってからかなり時間が経ってから開発再開したのでそのうちリファクタリングする
 */
 
-const util = require('util'),
-    twitter = require('twit'),
-    fs = require('fs'),
-    app = require('http').createServer();
-
-const twit = new twitter({//アカウント認証
-    consumer_key:        '',
-    consumer_secret:     '',
-    access_token:        '',
-    access_token_secret: '',
-    timeout_ms:           3 * 60 * 1000 //３分でタイムアウト
-});
+const util    = require('util'),
+      twitter = require('twit'),
+      fs      = require('fs'),
+      app     = require('http').createServer(),
+      tokens  = require('./tokens');
+const twit = new twitter(tokens);
 var stream;
 var id = '2911017872', num = 10, stat;
 var isConnect = false; //ストリーミング接続が有効かどうか
